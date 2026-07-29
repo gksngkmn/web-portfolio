@@ -1,4 +1,4 @@
-import profileImage from "../../../profile-photo-red.jpeg";
+import profileImage from "../../../profile-photo-grey-sweater.jpeg";
 import { useLanguage } from "../../i18n/LanguageContext";
 
 export function About() {
@@ -22,7 +22,14 @@ export function About() {
               <img
                 src={profileImage}
                 alt="Göksun Gökmen"
-                style={{ width: "100%", height: "100%", objectFit: "cover", filter: "saturate(0.8)" }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "center 30%",
+                  transform: "scale(1.75)",
+                  filter: "saturate(0.9)",
+                }}
               />
               <div style={{
                 position: "absolute", inset: 0,

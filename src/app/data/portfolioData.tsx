@@ -5,6 +5,21 @@ import { Skill } from "../models/Skill";
 import { SkillGroup } from "../models/SkillGroup";
 import { Experience } from "../models/Experience";
 import { PortfolioCatalog } from "../services/PortfolioCatalog";
+import productLogin from "../../assets/projects/product-order-management/login.png";
+import productManager from "../../assets/projects/product-order-management/manager-panel-blurred.png";
+import productCustomers from "../../assets/projects/product-order-management/customer-list-blurred.png";
+import financeDashboard from "../../assets/projects/finance-app/dashboard-cropped.png";
+import financeForecasting from "../../assets/projects/finance-app/forecasting-cropped.png";
+import financeReports from "../../assets/projects/finance-app/reports-cropped.png";
+import chatbotResponse from "../../assets/projects/unity-chatbot/chat-response.png";
+import astroWelcome from "../../assets/projects/astrorush/welcome.jpg";
+import astroAbout from "../../assets/projects/astrorush/about.jpg";
+import productCover from "../../assets/projects/covers/product-order-management.png";
+import financeCover from "../../assets/projects/covers/finance-app.png";
+import chatbotCover from "../../assets/projects/covers/unity-chatbot.png";
+import astroCover from "../../assets/projects/covers/astrorush.png";
+import compilerCover from "../../assets/projects/covers/two-pass-compiler-dark.png";
+import compilerOriginal from "../../assets/projects/two-pass-compiler/original-clean.png";
 
 export const NAV_ITEMS = [
   { id: "about", translationKey: "nav.about" },
@@ -30,7 +45,8 @@ const projects = [
     description: "A management application for custom-sized customer orders, customer records, and order-history tracking.",
     tags: ["JavaScript", "Web", "Order Management"],
     github: "https://github.com/gksngkmn/ProductOrderManagement",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&h=420&fit=crop&auto=format",
+    image: productCover,
+    gallery: [productLogin, productManager, productCustomers],
     color: "#7cffd4",
   }),
   new PortfolioProject({
@@ -40,7 +56,8 @@ const projects = [
     description: "A Flutter application for account-based income and expense tracking with historical and forward-looking analysis.",
     tags: ["Flutter", "Dart", "Mobile", "Finance"],
     github: "https://github.com/gksngkmn/FinanceApp",
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=700&h=420&fit=crop&auto=format",
+    image: financeCover,
+    gallery: [financeDashboard, financeForecasting, financeReports],
     color: "#b57bff",
   }),
   new PortfolioProject({
@@ -50,7 +67,8 @@ const projects = [
     description: "A voice-enabled chatbot prototype developed with Unity.",
     tags: ["Unity", "C#", "Ready Player Me", "Lip Sync"],
     github: "https://github.com/gksngkmn/UnityChatBot",
-    image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=700&h=420&fit=crop&auto=format",
+    image: chatbotCover,
+    gallery: [chatbotResponse],
     color: "#7cb8ff",
   }),
   new PortfolioProject({
@@ -60,7 +78,8 @@ const projects = [
     description: "A space game where the player steers a rocket to avoid falling meteors.",
     tags: ["Python"],
     github: "https://github.com/gksngkmn/astrorush",
-    image: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=700&h=420&fit=crop&auto=format",
+    image: astroCover,
+    gallery: [astroWelcome, astroAbout],
     color: "#ff9f7c",
   }),
   new PortfolioProject({
@@ -70,7 +89,8 @@ const projects = [
     description: "A Python-based two-pass compiler with lexical analysis, symbol-table construction, parsing, and semantic analysis.",
     tags: ["Python", "CustomTkinter", "Compiler", "AST"],
     github: "https://github.com/gksngkmn/TwoPassCompiler",
-    image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=700&h=420&fit=crop&auto=format",
+    image: compilerCover,
+    gallery: [compilerOriginal],
     color: "#7cffd4",
   }),
 ];

@@ -1,21 +1,37 @@
-import { ExternalLink, Github } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
 import type { PortfolioProject } from "../../models/PortfolioProject";
 import { useLanguage } from "../../i18n/LanguageContext";
 
-export function ProjectCard({ project }: { project: PortfolioProject }) {
+interface ProjectCardProps {
+  project: PortfolioProject;
+  onOpen: (project: PortfolioProject) => void;
+}
+
+export function ProjectCard({ project, onOpen }: ProjectCardProps) {
   const { t } = useLanguage();
   const title = t(`projects.item.${project.id}.title`);
   const description = t(`projects.item.${project.id}.description`);
   return (
     <div
+      role="button"
+      tabIndex={0}
+      aria-label={`${title} — ${t("projects.viewDetails")}`}
+      onClick={() => onOpen(project)}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onOpen(project);
+        }
+      }}
       style={{
         background: "rgba(255,255,255,0.03)",
         border: "1px solid rgba(255,255,255,0.07)",
         borderRadius: "20px",
         overflow: "hidden",
         transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
+        cursor: "pointer",
       }}
-      className="group hover:scale-[1.02]"
+      className="group hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7cffd4]"
       onMouseEnter={(e) => {
         (e.currentTarget as HTMLDivElement).style.borderColor = `${project.color}40`;
         (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 40px ${project.color}12`;
@@ -66,14 +82,17 @@ export function ProjectCard({ project }: { project: PortfolioProject }) {
         </div>
 
         <div className="flex items-center gap-4">
-          <a href={project.github} style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "#8888b8", display: "flex", alignItems: "center", gap: "0.35rem" }} className="hover:text-foreground transition-colors">
+          <a href={project.github} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()} style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "#8888b8", display: "flex", alignItems: "center", gap: "0.35rem" }} className="hover:text-foreground transition-colors">
             <Github size={12} /> GitHub
           </a>
           {project.hasLiveDemo && (
-            <a href={project.live!} style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "#8888b8", display: "flex", alignItems: "center", gap: "0.35rem" }} className="hover:text-foreground transition-colors">
+            <a href={project.live!} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()} style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "#8888b8", display: "flex", alignItems: "center", gap: "0.35rem" }} className="hover:text-foreground transition-colors">
               <ExternalLink size={12} /> {t("projects.live")}
             </a>
           )}
+          <span style={{ marginLeft: "auto", fontFamily: "'JetBrains Mono', monospace", fontSize: "0.67rem", color: project.color, display: "flex", alignItems: "center", gap: "0.3rem" }}>
+            {t("projects.viewDetails")} <ArrowUpRight size={13} />
+          </span>
         </div>
       </div>
     </div>

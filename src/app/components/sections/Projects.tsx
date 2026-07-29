@@ -2,11 +2,14 @@ import { useState } from "react";
 import { PORTFOLIO_CATALOG, PROJECT_CATEGORIES } from "../../data/portfolioData";
 import type { ProjectFilterId } from "../../models/ProjectCategory";
 import { ProjectCard } from "../portfolio/ProjectCard";
+import { ProjectDetailModal } from "../portfolio/ProjectDetailModal";
 import { useLanguage } from "../../i18n/LanguageContext";
+import type { PortfolioProject } from "../../models/PortfolioProject";
 
 export function Projects() {
   const { t } = useLanguage();
   const [active, setActive] = useState<ProjectFilterId>("all");
+  const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
   const filtered = PORTFOLIO_CATALOG.filterByCategory(active);
 
   return (
@@ -53,9 +56,12 @@ export function Projects() {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" aria-live="polite">
-          {filtered.map((p) => <ProjectCard key={p.id} project={p} />)}
+          {filtered.map((p) => <ProjectCard key={p.id} project={p} onOpen={setSelectedProject} />)}
         </div>
       </div>
+      {selectedProject && (
+        <ProjectDetailModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+      )}
     </section>
   );
 }

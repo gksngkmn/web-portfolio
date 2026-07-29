@@ -15,6 +15,7 @@ export interface PortfolioProjectData {
   github: string;
   live?: string | null;
   image: string;
+  gallery?: string[];
   color: string;
 }
 
@@ -27,6 +28,7 @@ export class PortfolioProject {
   readonly github: string;
   readonly live: string | null;
   readonly image: string;
+  readonly gallery: readonly string[];
   readonly color: string;
 
   constructor(data: PortfolioProjectData) {
@@ -38,6 +40,7 @@ export class PortfolioProject {
     this.github = data.github;
     this.live = data.live ?? null;
     this.image = data.image;
+    this.gallery = Object.freeze(data.gallery ? [...data.gallery] : [data.image]);
     this.color = data.color;
   }
 
