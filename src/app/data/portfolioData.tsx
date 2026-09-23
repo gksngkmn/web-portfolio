@@ -99,6 +99,7 @@ export const PORTFOLIO_CATALOG = new PortfolioCatalog(projects);
 
 const skills = Object.freeze([
   new Skill("Python", "proficient"),
+  new Skill("PHP", "working-knowledge"),
   new Skill("JavaScript", "proficient"),
   new Skill("SQL / PostgreSQL", "proficient"),
   new Skill("C / C++", "proficient"),
